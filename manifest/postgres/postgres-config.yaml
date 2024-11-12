@@ -5,5 +5,5 @@ metadata:
   name: postgres-config
 data:
   POSTGRES_USER: "ralf"
-  POSTGRES_PASSWORD: "Qwerty_123"
+  POSTGRES_PASSWORD: "Qwerty123"
   POSTGRES_DB: "bookstore_auth"

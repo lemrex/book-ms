@@ -22,12 +22,12 @@ spec:
           valueFrom:
             configMapKeyRef:
               name: mongo-config
-              key: MONGO_INITDB_ROOT_USERNAME
+              key: mongo-username
         - name: ME_CONFIG_MONGODB_ADMINPASSWORD
           valueFrom:
             configMapKeyRef:
               name: mongo-config
-              key: MONGO_INITDB_ROOT_PASSWORD
+              key: mongo-password
         - name: ME_CONFIG_MONGODB_SERVER
           value: mongodb-service  # Service name for MongoDB
         resources:

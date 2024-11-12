@@ -7,7 +7,7 @@ metadata:
 data:
   MONGODB_URI: "mongodb://mongo:27017/auth-service"
   POSTGRES_USER: "ralf"
-  POSTGRES_PASSWORD: "Qwerty_123"
+  POSTGRES_PASSWORD: "Qwerty123"
   POSTGRES_DB: "bookstore_auth"
   DB_HOST: "postgres"
   DB_PORT: "5432"
