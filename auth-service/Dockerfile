@@ -7,7 +7,7 @@ RUN npm install --only=production
 
 COPY . .
 
-# Stage 2: Production
+# Stage 2: Productions
 FROM node:18-alpine
 
 WORKDIR /app
