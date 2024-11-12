@@ -15,6 +15,8 @@ spec:
       labels:
         app: auth-service
     spec:
+      imagePullSecrets:
+        - name: default-secret
       containers:
         - name: auth-service
           image: swr.af-south-1.myhuaweicloud.com/ralf/auth-api:efd2af4df959640451a8c4c47430a8ee9211dc3e
