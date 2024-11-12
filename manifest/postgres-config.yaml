@@ -1,4 +1,4 @@
-# postgres-configmap.yaml
+# postgres-configmap.yamls
 apiVersion: v1
 kind: ConfigMap
 metadata:
