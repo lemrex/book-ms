@@ -38,6 +38,11 @@ spec:
                 configMapKeyRef:
                   name: bookms-config
                   key: DB_HOST
+            - name: DB_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: bookms-config
+                  key: POSTGRES_DB
             - name: DB_PORT
               valueFrom:
                 configMapKeyRef:

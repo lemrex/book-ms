@@ -9,8 +9,9 @@ data:
   POSTGRES_USER: "ralf"
   POSTGRES_PASSWORD: "Qwerty_123"
   POSTGRES_DB: "bookstore_auth"
+  DB_HOST: "postgres"
+  DB_PORT: "5432"
   REDIS_HOST: "redis"
   RABBITMQ_URL: "amqp://rabbitmq"
   JWT_SECRET: "ralf"
-  DB_HOST: "postgres"
-  DB_PORT: "5432"
+
