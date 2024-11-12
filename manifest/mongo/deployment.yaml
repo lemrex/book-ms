@@ -83,7 +83,8 @@ spec:
   resources:
     requests:
       storage: 5Gi
-storageClassName: csi-disk 
+  storageClassName: csi-disk
+
 
 ---
 apiVersion: v1
