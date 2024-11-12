@@ -2,7 +2,7 @@ name: CI/CD for book microservice
 on:
   push:
     branches:
-      - master  # Trigger CI/CD when code is pushed to the 'master' branch
+      - main  # Trigger CI/CD when code is pushed to the 'master' branch
 
 jobs:
   build:
