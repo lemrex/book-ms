@@ -46,8 +46,8 @@ jobs:
 
       - name: Update deployment
         run: |
-          sed -i "s@swr.af-south-1.myhuaweicloud.com/ralf/hello-world-nodejs:[a-z0-9]*@swr.af-south-1.myhuaweicloud.com/ralf/hello-world-nodejs:${{ github.sha }}@g" deployment.yaml    
-          sed -i "s@swr.af-south-1.myhuaweicloud.com/ralf/hello-world-nodejs:[a-z0-9]*@swr.af-south-1.myhuaweicloud.com/ralf/hello-world-nodejs:${{ github.sha }}@g" deployment.yaml    
+          sed -i "s@swr.af-south-1.myhuaweicloud.com/ralf/auth-api:[a-z0-9]*@swr.af-south-1.myhuaweicloud.com/ralf/auth-api:${{ github.sha }}@g" manifest/deployment.yaml    
+        #   sed -i "s@swr.af-south-1.myhuaweicloud.com/ralf/hello-world-nodejs:[a-z0-9]*@swr.af-south-1.myhuaweicloud.com/ralf/hello-world-nodejs:${{ github.sha }}@g" deployment.yaml    
 
       - name: Debugging CCE access
         run: |
