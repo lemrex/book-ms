@@ -21,12 +21,12 @@ jobs:
 
       - name: Build and push auth service
         run: |
-          docker build -t swr.af-south-1.myhuaweicloud.com/ralf/auth-api:${{ github.sha }} .
+          docker build -t swr.af-south-1.myhuaweicloud.com/ralf/auth-api:${{ github.sha }} auth-service/
           docker push swr.af-south-1.myhuaweicloud.com/ralf/auth-api:${{ github.sha }}
 
       - name: Build and push inventory service
         run: |
-          docker build -t swr.af-south-1.myhuaweicloud.com/ralf/inventory-api:${{ github.sha }} .
+          docker build -t swr.af-south-1.myhuaweicloud.com/ralf/inventory-api:${{ github.sha }} inventory-service/
           docker push swr.af-south-1.myhuaweicloud.com/ralf/inventory-api:${{ github.sha }}          
 
   deploy:
