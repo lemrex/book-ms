@@ -6,8 +6,11 @@ metadata:
   namespace: default
 data:
   MONGODB_URI: "mongodb://mongo:27017/auth-service"
-  POSTGRES_USER: "user"
-  POSTGRES_PASSWORD: "password"
+  POSTGRES_USER: "ralf"
+  POSTGRES_PASSWORD: "Qwerty_123"
+  POSTGRES_DB: "bookstore_auth"
   REDIS_HOST: "redis"
   RABBITMQ_URL: "amqp://rabbitmq"
-  JWT_SECRET: "your_jwt_secret"
+  JWT_SECRET: "ralf"
+  DB_HOST: "postgres"
+  DB_PORT: "5432"

@@ -23,11 +23,26 @@ spec:
           ports:
             - containerPort: 3000
           env:
-            - name: MONGODB_URI
+            - name: DB_USER
               valueFrom:
                 configMapKeyRef:
                   name: bookms-config
-                  key: MONGODB_URI
+                  key: POSTGRES_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: bookms-config
+                  key: DB_PASSWORD
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: bookms-config
+                  key: DB_HOST
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: bookms-config
+                  key: DB_PORT
             - name: JWT_SECRET
               valueFrom:
                 configMapKeyRef:

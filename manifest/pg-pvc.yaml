@@ -1,0 +1,12 @@
+# postgres-pvc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi   # Size should match or be smaller than the PV size
+  storageClassName: csi-disk  # Must match the storage class in the PV

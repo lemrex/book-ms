@@ -1,0 +1,9 @@
+# postgres-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+data:
+  POSTGRES_USER: "ralf"
+  POSTGRES_PASSWORD: "Qwert_123"
+  POSTGRES_DB: "bookstore_auth"

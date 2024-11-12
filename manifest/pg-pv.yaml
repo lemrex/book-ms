@@ -1,0 +1,15 @@
+# postgres-pv.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgres-pv
+spec:
+  capacity:
+    storage: 5Gi   # Adjust size as needed
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce   # The volume can be mounted as read-write by a single node
+  persistentVolumeReclaimPolicy: Retain   # Or 'Recycle'/'Delete', depending on your use case
+  storageClassName: csi-disk
+  hostPath:             # Using hostPath for local storage; use another provisioner for cloud
+    path: /mnt/data/postgres
