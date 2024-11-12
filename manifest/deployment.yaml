@@ -32,7 +32,7 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: bookms-config
-                  key: DB_PASSWORD
+                  key: POSTGRES_PASSWORD
             - name: DB_HOST
               valueFrom:
                 configMapKeyRef:
