@@ -1,0 +1,13 @@
+# configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bookms-config
+  namespace: default
+data:
+  MONGODB_URI: "mongodb://mongo:27017/auth-service"
+  POSTGRES_USER: "user"
+  POSTGRES_PASSWORD: "password"
+  REDIS_HOST: "redis"
+  RABBITMQ_URL: "amqp://rabbitmq"
+  JWT_SECRET: "your_jwt_secret"

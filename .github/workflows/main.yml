@@ -12,8 +12,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-
-
       - name: Log in to Huawei Cloud SWR
         uses: huaweicloud/swr-login@v2.1.0
         with:
@@ -21,10 +19,15 @@ jobs:
           access-key-secret: ${{ secrets.SECRETACCESSKEY }}
           region: af-south-1
 
-      - name: Build and push Docker image
+      - name: Build and push auth service
         run: |
-          docker build -t swr.af-south-1.myhuaweicloud.com/ralf/hello-world-nodejs:${{ github.sha }} .
-          docker push swr.af-south-1.myhuaweicloud.com/ralf/hello-world-nodejs:${{ github.sha }}
+          docker build -t swr.af-south-1.myhuaweicloud.com/ralf/auth-api:${{ github.sha }} .
+          docker push swr.af-south-1.myhuaweicloud.com/ralf/auth-api:${{ github.sha }}
+
+      - name: Build and push inventory service
+        run: |
+          docker build -t swr.af-south-1.myhuaweicloud.com/ralf/inventory-api:${{ github.sha }} .
+          docker push swr.af-south-1.myhuaweicloud.com/ralf/inventory-api:${{ github.sha }}          
 
   deploy:
     runs-on: ubuntu-latest
@@ -40,18 +43,17 @@ jobs:
           sudo chown -R runner:runner $HOME/.kube
           export KUBECONFIG=$HOME/.kube/config
           echo "${{ secrets.KUBE_CONFIG_DATA }}" > $KUBECONFIG
+
       - name: Update deployment
         run: |
           sed -i "s@swr.af-south-1.myhuaweicloud.com/ralf/hello-world-nodejs:[a-z0-9]*@swr.af-south-1.myhuaweicloud.com/ralf/hello-world-nodejs:${{ github.sha }}@g" deployment.yaml    
+          sed -i "s@swr.af-south-1.myhuaweicloud.com/ralf/hello-world-nodejs:[a-z0-9]*@swr.af-south-1.myhuaweicloud.com/ralf/hello-world-nodejs:${{ github.sha }}@g" deployment.yaml    
 
-
-      - name: Debugging
+      - name: Debugging CCE access
         run: |
           kubectl version
           kubectl cluster-info
-          kubectl get nodes
 
-      - name: Deploy to Huawei CCE
+      - name: Deploy manifest
         run: |
-          kubectl apply -f deployment.yaml
-          kubectl apply -f service.yaml
+          kubectl apply -f manifest/
