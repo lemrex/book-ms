@@ -1,5 +1,4 @@
-name: CICD pipeline for book microservices
-
+name: CI/CD for book microservice
 on:
   push:
     branches:
@@ -13,12 +12,46 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+
+
+      - name: Log in to Huawei Cloud SWR
+        uses: huaweicloud/swr-login@v2.1.0
+        with:
+          access-key-id: ${{ secrets.ACCESSKEY }}
+          access-key-secret: ${{ secrets.SECRETACCESSKEY }}
+          region: af-south-1
+
       - name: Build and push Docker image
         run: |
+          docker build -t swr.af-south-1.myhuaweicloud.com/ralf/hello-world-nodejs:${{ github.sha }} .
+          docker push swr.af-south-1.myhuaweicloud.com/ralf/hello-world-nodejs:${{ github.sha }}
 
-          docker login -u af-south-1@${{ secrets.ACCESSKEY }} -p ${{ secrets.SECRETACCESSKEY }} swr.af-south-1.myhuaweicloud.com
-          docker build -t swr.af-south-1.myhuaweicloud.com/ralf/fg:${{ github.sha }} ./api
-          docker push swr.af-south-1.myhuaweicloud.com/ralf/fg:${{ github.sha }}
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Configure kubectl for Huawei Cloud CCE
+        run: |
+          sudo mkdir -p $HOME/.kube
+          sudo chown -R runner:runner $HOME/.kube
+          export KUBECONFIG=$HOME/.kube/config
+          echo "${{ secrets.KUBE_CONFIG_DATA }}" > $KUBECONFIG
+      - name: Update deployment
+        run: |
+          sed -i "s@swr.af-south-1.myhuaweicloud.com/ralf/hello-world-nodejs:[a-z0-9]*@swr.af-south-1.myhuaweicloud.com/ralf/hello-world-nodejs:${{ github.sha }}@g" deployment.yaml    
 
 
+      - name: Debugging
+        run: |
+          kubectl version
+          kubectl cluster-info
+          kubectl get nodes
 
+      - name: Deploy to Huawei CCE
+        run: |
+          kubectl apply -f deployment.yaml
+          kubectl apply -f service.yaml
