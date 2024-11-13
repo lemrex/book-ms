@@ -32,6 +32,7 @@ const pool = new Pool({
   database: process.env.DB_DATABASE,
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
+  password_encryption: 'scram-sha-256'
 });
 
 const connectDB = async () => {
