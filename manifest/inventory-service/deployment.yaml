@@ -23,11 +23,11 @@ spec:
         # - configMapRef:
         #     name: inventory-config
         env:
-            - name: MONGO_URI
+            - name: MONGO_HOST
               valueFrom:
                 configMapKeyRef:
                   name: inventory-config
-                  key: MONGO_URI
+                  key: MONGO_HOST
             - name: MONGO_DB
               valueFrom:
                 configMapKeyRef:
