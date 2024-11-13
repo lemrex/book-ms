@@ -1,15 +1,12 @@
-# auth-service.yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: auth-service
-  labels:
-    app: auth-service
+  name: inventory-service
 spec:
   selector:
-    app: auth-service
+    app: inventory-service
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 3000
-  type: ClusterIP
+      port: 80            # The port the service will expose
+      targetPort: 3100     # The port on the container to forward traffic to
+  type: ClusterIP          # Internal access within the cluster, use NodePort or LoadBalancer for external access
