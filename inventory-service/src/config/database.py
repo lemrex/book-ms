@@ -22,7 +22,7 @@ database_name = os.getenv('MONGO_DB')
 # Initialize MongoDB connection
 mongo_uri = f"mongodb://{mongo_user}:{mongo_password}@{mongo_host}:27017/{database_name}"
 
-
+logger.info(f"Connecting to MongoDB URI: {mongo_uri}")
 try:
     client = MongoClient(mongo_uri, serverSelectionTimeoutMS=5000)  # Set a timeout for the connection
     # Test the connection to MongoDB
@@ -34,10 +34,14 @@ except Exception as e:
     logger.error(f"Error connecting to MongoDB: {e}")
 
 def init_db():
-    # Create indexes if needed
-    books_collection.create_index([('isbn', 1)], unique=True)
-    books_collection.create_index([('user_id', 1)])
-    logger.info("Database initialized with indexes")
+    # Check if we have successfully connected before initializing the DB
+    if 'books_collection' in locals():
+        # Create indexes if needed
+        books_collection.create_index([('isbn', 1)], unique=True)
+        books_collection.create_index([('user_id', 1)])
+        logger.info("Database initialized with indexes")
+    else:
+        logger.error("Failed to connect to MongoDB. Database initialization skipped.")
 # client = MongoClient(mongo_uri)
 # db = client[database_name]
 # books_collection = db['books']
