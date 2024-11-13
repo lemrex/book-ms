@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: inventory-config
 data:
-  MONGO_URI: "mongodb://mongo-service:27017/"
   MONGO_DB: "bookstore"
+  MONGO_HOST: "mongodb://mongodb-service:27017/"
   REDIS_URI: "redis-service"
   REDIS_PORT: "6379"
