@@ -28,11 +28,26 @@ spec:
                 configMapKeyRef:
                   name: inventory-config
                   key: MONGO_URI
+            - name: MONGO_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: inventory-config
+                  key: MONGO_DB
             - name: REDIS_URI
               valueFrom:
                 configMapKeyRef:
                   name: inventory-config
                   key: REDIS_URI
+            - name: MONGO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: bookms-secret
+                  key: MONGO_PASSWORD      
+            - name: MONGO_USER
+              valueFrom:
+                secretKeyRef:
+                  name: bookms-secret
+                  key: MONGO_USER                    
         resources:
           requests:
             memory: "64Mi"
