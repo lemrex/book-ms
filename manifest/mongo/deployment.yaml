@@ -20,19 +20,14 @@ spec:
         env:
         - name: MONGO_INITDB_ROOT_USERNAME
           valueFrom:
-            configMapKeyRef:
-              name: mongo-config
+            secretKeyRef:
+              name: mongo-secret
               key: mongo-username
         - name: MONGO_INITDB_ROOT_PASSWORD
           valueFrom:
-            configMapKeyRef:
-              name: mongo-config
+            secretKeyRef:
+              name: mongo-secret
               key: mongo-password
-        - name: MONGO_INITDB_DATABASE
-          valueFrom:
-            configMapKeyRef:
-              name: mongo-config
-              key: init-db              
         resources:
           requests:
             memory: "64Mi"
@@ -47,7 +42,6 @@ spec:
       - name: mongo-storage
         persistentVolumeClaim:
           claimName: mongo-pvc
-
       initContainers:
       - name: mongo-init
         image: mongo:latest
@@ -67,12 +61,12 @@ spec:
         - name: MONGO_INITDB_ROOT_USERNAME
           valueFrom:
             secretKeyRef:
-              name: mongo-config
+              name: mongo-secret
               key: mongo-username
         - name: MONGO_INITDB_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: mongo-config
+              name: mongo-secret
               key: mongo-password
         - name: INIT_DB
           valueFrom:
@@ -82,13 +76,14 @@ spec:
         - name: MONGO_DB_USERNAME
           valueFrom:
             secretKeyRef:
-              name: mongo-config
+              name: mongo-secret
               key: mongo-username
         - name: MONGO_DB_PASSWORD
           valueFrom:
             secretKeyRef:
               name: mongo-secret
               key: mongo-password
+
 
 ---
 apiVersion: v1
@@ -140,7 +135,16 @@ kind: ConfigMap
 metadata:
   name: mongo-config
 data:
-  mongo-username: "ralf"
-  mongo-password: "Qwerty123"
   init-db: "bookstore"
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mongo-secret
+type: Opaque
+data:
+  mongo-username: cmFsZg==
+  mongo-password: UXdlcnR5MTIz
+
 
