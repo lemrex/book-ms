@@ -40,5 +40,5 @@ COPY . .
 EXPOSE 3001
 
 # Start the application
-CMD ["python", "src/inventory.py"]
+CMD ["python", "src/app.py"]
 

@@ -22,36 +22,61 @@ spec:
           image: swr.af-south-1.myhuaweicloud.com/ralf/auth-api:efd2af4df959640451a8c4c47430a8ee9211dc3e
           ports:
             - containerPort: 3000
+          # env:
+          #   - name: DB_USER
+          #     valueFrom:
+          #       configMapKeyRef:
+          #         name: bookms-config
+          #         key: POSTGRES_USER
+          #   - name: DB_PASSWORD
+          #     valueFrom:
+          #       configMapKeyRef:
+          #         name: bookms-config
+          #         key: POSTGRES_PASSWORD
+          #   - name: DB_HOST
+          #     valueFrom:
+          #       configMapKeyRef:
+          #         name: bookms-config
+          #         key: DB_HOST
+          #   - name: DB_DATABASE
+          #     valueFrom:
+          #       configMapKeyRef:
+          #         name: bookms-config
+          #         key: POSTGRES_DB
+          #   - name: DB_PORT
+          #     valueFrom:
+          #       configMapKeyRef:
+          #         name: bookms-config
+          #         key: DB_PORT
+          #   - name: JWT_SECRET
+          #     valueFrom:
+          #       configMapKeyRef:
+          #         name: bookms-config
+          #         key: JWT_SECRET
           env:
             - name: DB_USER
               valueFrom:
-                configMapKeyRef:
-                  name: bookms-config
-                  key: POSTGRES_USER
+                secretKeyRef:
+                  name: bookms-secret
+                  key: DB_USER
             - name: DB_PASSWORD
               valueFrom:
-                configMapKeyRef:
-                  name: bookms-config
-                  key: POSTGRES_PASSWORD
-            - name: DB_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: bookms-config
-                  key: DB_HOST
+                secretKeyRef:
+                  name: bookms-secret
+                  key: DB_PASSWORD
             - name: DB_DATABASE
               valueFrom:
-                configMapKeyRef:
-                  name: bookms-config
-                  key: POSTGRES_DB
+                secretKeyRef:
+                  name: bookms-secret
+                  key: DB_DATABASE
+            - name: DB_HOST
+              value: "postgres"  # Your PostgreSQL service name
             - name: DB_PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: bookms-config
-                  key: DB_PORT
+              value: "5432"
             - name: JWT_SECRET
               valueFrom:
-                configMapKeyRef:
-                  name: bookms-config
+                secretKeyRef:
+                  name: bookms-secret
                   key: JWT_SECRET
           resources:
             requests:
