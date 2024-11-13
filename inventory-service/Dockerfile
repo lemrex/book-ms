@@ -34,7 +34,7 @@ COPY requirements.txt .
 
 # Upgrade pip and install dependencies
 RUN pip install --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt --verbose
+RUN pip install -r requirements.txt --verbose
 
 # Copy the application code
 COPY . .
