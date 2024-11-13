@@ -28,6 +28,11 @@ spec:
             configMapKeyRef:
               name: mongo-config
               key: mongo-password
+        - name: MONGO_INITDB_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: mongo-config
+              key: init-db              
         resources:
           requests:
             memory: "64Mi"
@@ -94,4 +99,5 @@ metadata:
 data:
   mongo-username: "ralf"
   mongo-password: "Qwerty123"
+  init-db: "bookstore"
 
