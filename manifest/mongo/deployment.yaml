@@ -49,7 +49,7 @@ spec:
           - /bin/sh
           - "-c"
           - |
-            mongo <<EOF
+            mongo --host mongodb-service --username $MONGO_INITDB_ROOT_USERNAME --password $MONGO_INITDB_ROOT_PASSWORD --authenticationDatabase admin <<EOF
             use $INIT_DB;
             db.createUser({
                 user: "$MONGO_DB_USERNAME",
