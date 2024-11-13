@@ -47,6 +47,49 @@ spec:
       - name: mongo-storage
         persistentVolumeClaim:
           claimName: mongo-pvc
+
+      initContainers:
+      - name: mongo-init
+        image: mongo:latest
+        command:
+          - /bin/sh
+          - "-c"
+          - |
+            mongo <<EOF
+            use $INIT_DB;
+            db.createUser({
+                user: "$MONGO_DB_USERNAME",
+                pwd: "$MONGO_DB_PASSWORD",
+                roles: [{ role: "readWrite", db: "$INIT_DB" }]
+            });
+            EOF
+        env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secret
+              key: mongo-username
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secret
+              key: mongo-password
+        - name: INIT_DB
+          valueFrom:
+            configMapKeyRef:
+              name: mongo-config
+              key: init-db
+        - name: MONGO_DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secret
+              key: mongo-username
+        - name: MONGO_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secret
+              key: mongo-password
+
 ---
 apiVersion: v1
 kind: Service
