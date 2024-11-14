@@ -21,5 +21,5 @@ COPY . .
 EXPOSE 3001
 
 # Start the application
-# CMD ["python", "src/app.py"]
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:3001", "src.app:app"]
+CMD ["python", "src/app.py"]
+# CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:3001", "src.app:app"]
