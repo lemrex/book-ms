@@ -32,7 +32,7 @@ except Exception as e:
     logger.error(f"Error connecting to MongoDB: {e}")
 
 def init_db(books_collection=None):
-    if books_collection is not None:
+    if books_collection is None:
         logger.error("books_collection is None. Database initialization skipped.")
         return
     try:
