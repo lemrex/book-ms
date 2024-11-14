@@ -12,8 +12,6 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Use environment variables for MongoDB connection string and database name
-# mongo_uri = os.getenv('MONGO_URI')
-# database_name = os.getenv('MONGO_DB')
 mongo_user = os.getenv('MONGO_USER')
 mongo_password = os.getenv('MONGO_PASSWORD')
 mongo_host = os.getenv('MONGO_HOST')  # or the appropriate hostname of your MongoDB service
