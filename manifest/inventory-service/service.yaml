@@ -8,5 +8,5 @@ spec:
   ports:
     - protocol: TCP
       port: 80            # The port the service will expose
-      targetPort: 3100     # The port on the container to forward traffic to
+      targetPort: 3001     # The port on the container to forward traffic to
   type: ClusterIP          # Internal access within the cluster, use NodePort or LoadBalancer for external access

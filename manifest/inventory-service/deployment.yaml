@@ -18,7 +18,7 @@ spec:
       - name: inventory-service
         image: swr.af-south-1.myhuaweicloud.com/ralf/inventory-api:efd2af4df959640451a8c4c47430a8ee9211dc3e
         ports:
-        - containerPort: 3100
+        - containerPort: 3001
         # envFrom:
         # - configMapRef:
         #     name: inventory-config
