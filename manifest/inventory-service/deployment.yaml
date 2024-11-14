@@ -33,6 +33,11 @@ spec:
                 configMapKeyRef:
                   name: inventory-config
                   key: MONGO_DB
+            - name: TOKEN_VERIFICATION_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: inventory-config
+                  key: TOKEN_VERIFICATION_URL
             - name: REDIS_URI
               valueFrom:
                 configMapKeyRef:

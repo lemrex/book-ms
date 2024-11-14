@@ -7,3 +7,4 @@ data:
   MONGO_HOST: "mongodb-service"
   REDIS_URI: "redis-service"
   REDIS_PORT: "6379"
+  TOKEN_VERIFICATION_URL: "http://auth-service:3000/auth/verify"
