@@ -1,5 +1,5 @@
 from flask import Flask
-from routes.books import books_bp
+from src.routes.books import books_bp
 from config.database import init_db
 from flask_cors import CORS  # Import CORS
 
