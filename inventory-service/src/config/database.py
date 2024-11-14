@@ -33,13 +33,15 @@ except Exception as e:
 
 def init_db(books_collection=None):
     if books_collection is not None:
-        try:
-            # Create indexes if needed
-            books_collection.create_index([('isbn', 1)], unique=True)
-            books_collection.create_index([('user_id', 1)])
-            logger.info("Database initialized with indexes")
-        except Exception as e:
-            logger.error(f"Error initializing database indexes: {e}")
+        logger.error("books_collection is None. Database initialization skipped.")
+        return
+    try:
+        # Create indexes if needed
+        books_collection.create_index([('isbn', 1)], unique=True)
+        books_collection.create_index([('user_id', 1)])
+        logger.info("Database initialized with indexes")
+    except Exception as e:
+        logger.error(f"Error initializing database indexes: {e}")
     else:
         logger.error("books_collection is not available. Database initialization skipped.")
 
