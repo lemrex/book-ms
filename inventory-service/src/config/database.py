@@ -3,7 +3,6 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 import os
 
-
 # Load environment variables from the .env file
 load_dotenv()
 
@@ -28,6 +27,15 @@ try:
     db = client[database_name]
     books_collection = db['books']
     logger.info("Successfully connected to MongoDB")
+    
+    # Log books_collection to confirm it's not None
+    if books_collection:
+        logger.info("Books collection initialized.")
+        # Initialize the database with the collection
+        init_db(books_collection)
+    else:
+        logger.error("books_collection is None. Skipping database initialization.")
+
 except Exception as e:
     logger.error(f"Error connecting to MongoDB: {e}")
 
@@ -43,7 +51,4 @@ def init_db(books_collection=None):
     except Exception as e:
         logger.error(f"Error initializing database indexes: {e}")
     else:
-        logger.error("books_collection is not available. Database initialization skipped.")
-
-
-init_db(books_collection)
+        logger.info("Database initialization completed successfully.")
