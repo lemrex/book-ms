@@ -42,8 +42,6 @@ def init_db(books_collection=None):
         logger.info("Database initialized with indexes")
     except Exception as e:
         logger.error(f"Error initializing database indexes: {e}")
-    else:
-        logger.error("books_collection is not available. Database initialization skipped.")
 
 
 init_db(books_collection)
