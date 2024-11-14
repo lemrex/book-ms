@@ -46,4 +46,4 @@ def init_db(books_collection=None):
         logger.error("books_collection is not available. Database initialization skipped.")
 
 
-
+init_db(books_collection)
