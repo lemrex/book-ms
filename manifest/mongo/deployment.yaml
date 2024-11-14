@@ -51,23 +51,14 @@ spec:
           - |
             mongo --host mongodb-service --username $MONGO_INITDB_ROOT_USERNAME --password $MONGO_INITDB_ROOT_PASSWORD --authenticationDatabase admin <<EOF
             use $INIT_DB;
-            db.createRole({
-                role: "customReadWriteRoleForBooks",
-                privileges: [
-                    {
-                        resource: { db: "$INIT_DB", collection: "books" },
-                        actions: [ "find", "insert", "update", "remove" ]
-                    }
-                ],
-                roles: []
-            });
             db.createUser({
                 user: "$MONGO_DB_USERNAME",
                 pwd: "$MONGO_DB_PASSWORD",
-                roles: [{ role: "customReadWriteRoleForBooks", db: "$INIT_DB" }]
+                roles: [{ role: "readWrite", db: "$INIT_DB" }]
+                roles: [{ role: "readWrite", db: "$INIT_DB", resource: { collection: "books" } }
             });
             EOF
-
+            
         env:
         - name: MONGO_INITDB_ROOT_USERNAME
           valueFrom:
