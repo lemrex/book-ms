@@ -45,7 +45,6 @@ spec:
       initContainers:
       - name: mongo-init
         image: mongo:latest
-
         command:
           - /bin/sh
           - "-c"
