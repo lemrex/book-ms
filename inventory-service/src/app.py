@@ -10,9 +10,9 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 
 
 # Initialize database
-init_db()
+# init_db()
 
-# Register blueprints
+# Register blueprintss
 app.register_blueprint(books_bp, url_prefix='/books')
 
 if __name__ == '__main__':
