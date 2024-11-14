@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from bson import ObjectId
-from models.book import Book
+from src.models.book import Book
 from config.redis import get_redis_client
 import requests
 import json

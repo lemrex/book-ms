@@ -1,5 +1,5 @@
 # inventory-service/src/models/book.py
-from config.database import books_collection
+from src.config.database import books_collection
 
 class Book:
     @staticmethod
