@@ -38,11 +38,16 @@ spec:
                 configMapKeyRef:
                   name: inventory-config
                   key: TOKEN_VERIFICATION_URL
-            - name: REDIS_URI
+            - name: REDIS_HOST
               valueFrom:
                 configMapKeyRef:
                   name: inventory-config
                   key: REDIS_URI
+            - name: REDIS_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: inventory-config
+                  key: REDIS_PORT                  
             - name: MONGO_PASSWORD
               valueFrom:
                 secretKeyRef:
