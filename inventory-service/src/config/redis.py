@@ -24,12 +24,17 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+# Debug: Print environment variables
+print("REDIS_HOST:", os.getenv('REDIS_HOST'))
+print("REDIS_PORT:", os.getenv('REDIS_PORT'))
+
 # Set up Redis connection
 try:
     redis_client = redis.Redis(
         host=os.getenv('REDIS_HOST', '110.238.74.93'),
         port=int(os.getenv('REDIS_PORT', 6379)),
-        db=0
+        db=0,
+        socket_connect_timeout=5  # Timeout in seconds
     )
     # Test Redis connection
     redis_client.ping()
@@ -44,3 +49,4 @@ def get_redis_client():
     else:
         logger.warning("Redis client is not available.")
     return redis_client
+
