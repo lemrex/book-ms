@@ -57,7 +57,12 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: bookms-secret
-                  key: MONGO_USER                    
+                  key: MONGO_USER         
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: bookms-secret
+                  key: REDIS_PASSWORD                                  
         resources:
           requests:
             memory: "256Mi"
