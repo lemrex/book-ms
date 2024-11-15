@@ -34,7 +34,8 @@ try:
     redis_client = redis.Redis(
         host=os.getenv('REDIS_HOST', '110.238.74.93'),
         port=int(os.getenv('REDIS_PORT', 6379)),
-        password=os.getenv('REDIS_PASSWORD'),
+        # password=os.getenv('REDIS_PASSWORD'),
+        password='Qwerty123',
         db=0,
         socket_connect_timeout=5  # Timeout in seconds
     )
