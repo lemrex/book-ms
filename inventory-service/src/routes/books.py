@@ -31,7 +31,11 @@ def verify_token(token):
     try:
         response = requests.post(verification_url, json={'token': token})
         response.raise_for_status()  # Raises an exception for 4XX/5XX responses
+        # Log the response if token is valid
+        verification_response = response.json()
+        logger.info(f"Token verification successful: {verification_response}")
         return response.json()
+    
     except requests.RequestException as e:
         logger.error(f"Token verification failed: {str(e)}")
         return {'valid': False, 'error': str(e)}
