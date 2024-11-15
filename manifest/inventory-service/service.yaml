@@ -7,6 +7,6 @@ spec:
     app: inventory-service
   ports:
     - protocol: TCP
-      port: 80            # The port the service will expose
+      port: 3001            # The port the service will expose
       targetPort: 3001     # The port on the container to forward traffic to
   type: ClusterIP          # Internal access within the cluster, use NodePort or LoadBalancer for external access
