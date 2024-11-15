@@ -97,7 +97,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/data/redis"  # Adjust this path based on your environment
+    path: "/data/redis"  # Adjust this path based on your environments
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
