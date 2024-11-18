@@ -21,8 +21,5 @@ jobs:
 
       - name: Build and push auth service
         run: |
-          docker build -t swr.af-south-1.myhuaweicloud.com/ralf/auth-api:${{ github.sha }} 
-          docker push swr.af-south-1.myhuaweicloud.com/ralf/auth-api:${{ github.sha }}
-
-          docker build -t demo.goharbor.io/hades/auth-service auth-service/
-          docker push demo.goharbor.io/hades/auth-service
+          docker build -t demo.goharbor.io/hades/auth-service:${{ github.sha }}  auth-service/
+          docker push demo.goharbor.io/hades/auth-service::${{ github.sha }} 
