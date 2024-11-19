@@ -43,7 +43,7 @@ jobs:
       - name: Login to Harbor Container Registry
         uses: docker/login-action@v3
         with:
-          registry: demo.goharbor.io
+          registry: 159.138.169.213
           username: admin
           password: ${{ secrets.HARBOR_PASS2 }}
 
