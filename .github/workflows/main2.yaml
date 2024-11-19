@@ -50,5 +50,5 @@ jobs:
       # Step 3: Build and Push the Docker Image
       - name: Build and push auth service
         run: |
-          docker build -t demo.goharbor.io/bookms/auth-service:${{ github.sha }} auth-service/
-          docker push demo.goharbor.io/bookms/auth-service:${{ github.sha }}
+          docker build -t harbor.lemrex.online/bookms/auth-service:${{ github.sha }} auth-service/
+          docker push harbor.lemrex.online/bookms/auth-service:${{ github.sha }}
