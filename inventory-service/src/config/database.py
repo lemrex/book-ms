@@ -16,6 +16,7 @@ mongo_user = os.getenv('MONGO_USER')
 mongo_password = os.getenv('MONGO_PASSWORD')
 mongo_host = os.getenv('MONGO_HOST')  # or the appropriate hostname of your MongoDB service
 database_name = os.getenv('MONGO_DB')
+books_collection = db['books']
 
 # Initialize MongoDB connection
 mongo_uri = f"mongodb://{mongo_user}:{mongo_password}@{mongo_host}:27017/{database_name}"
