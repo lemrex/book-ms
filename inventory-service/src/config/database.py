@@ -17,7 +17,7 @@ mongo_host = os.getenv('MONGO_HOST')  # or the appropriate hostname of your Mong
 database_name = os.getenv('MONGO_DB')
 
 # Initialize MongoDB connection
-mongo_uri = f"mongodb://{mongo_user}:{mongo_password}@{mongo_host}:27017/{database_name}?authSource={database_name}"
+mongo_uri = f"mongodb://{mongo_user}:{mongo_password}@{mongo_host}:27017/{database_name}?authSource={database_name}&authMechanism=SCRAM-SHA-256"
 books_collection = None
 
 try:
